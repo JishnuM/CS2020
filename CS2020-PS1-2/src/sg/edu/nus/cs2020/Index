@@ -1,0 +1,26 @@
+Problem 2 - Index
+
+a. Implemented in ShiftRegister.java
+
+b. Test Cases Implemented in TestCase.java
+
+c. Picture of 6 CS2020 Tutors.
+Top Left - Weilun
+Top Centre - Chun Teck
+Top Right - Michael
+Bottom Left - Pallav
+Bottom Centre - Han Lin
+Bottom Right - Richard
+transform is a function that can be used for both 
+encoding and decoding images. Given a seed and a
+tap, the generated sequence forms an unique password.
+Using bitwise XOR, transform modifies the rgb values
+of the image.
+This is an useful encryption method, as the seed and tap
+combination will generate the same sequence every time,
+and applying bitwise XOR twice leads to the original
+value. As such, if one has the seed and the tap that were
+used to encrypt the picture, they can be used in
+exactly the same way to decrypt as well.
+
+d. 
