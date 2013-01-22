@@ -24,3 +24,26 @@ used to encrypt the picture, they can be used in
 exactly the same way to decrypt as well.
 
 d. 
+With regards to the shift register repeating, while it is
+clear that all taps are not equally good - taps of 6 and 7 on
+a 15 bit register gives 32768 tries before repeating, while
+a tap of 8 or 5 will cause a repeat in only 94 tries. It is
+also not a case of the best tap being close to the centre, as
+in the same instance a tap of 12 can go 4600 shifts before
+repeating.
+Broadly, as the size of the shift register increases, the 
+number of times before repeat increases as well.
+While there seems to be no discernible pattern, taps close to
+the mean seem to usually be the best.
+It is worth noting that for a particular tap-size combination
+the number of shifts before a sequence repeats is fixed,
+despite the initial seed being randomly generated.
+
+The modified version can be used by constructing a ShiftRegister
+and calling the function stringShiftRegister with a string and
+a tap, as shown in the TestCase.
+
+As long as the initial seed is not all zeroes, which would cause
+all subsequent states to be all zeroes as well, a near-equal
+distribution of 0's and 1's is guaranteed. This is because
+the other cases, too few 1s and too many 1s, are self correcting.

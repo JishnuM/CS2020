@@ -3,13 +3,15 @@ package sg.edu.nus.cs2020;
 /**
  * class TestCase
  * @author Jishnu
- * Description - Runs Test Cases to test ShiftRegister
+ * Description - Runs Test Cases to test and debug ShiftRegister
+ * 
  */
 public class TestCase {
 	/**
 	 * Main function that runs all the test cases and prints output
 	 */
 	public static void main(String[] args){
+		
 		//Test Case 1 - Given - To Test Shift
 		int[] array1 = new int[9];
 		array1[0] = 0;
@@ -61,7 +63,7 @@ public class TestCase {
 		
 		System.out.println('\n');
 		
-		//Test Case 4 - 
+		//Test Case 4 - UserCreated
 		int[] array4 = {0};
 		ShiftRegister shifter4 = new ShiftRegister(1,0);
 		shifter4.setSeed(array4);
@@ -72,7 +74,7 @@ public class TestCase {
 		
 		System.out.println('\n');
 		
-		//Test Case 5 -
+		//Test Case 5 - User Created
 		int[] array5 = {1,0,1,0,0,1,0,0,1,1};
 		ShiftRegister shifter5 = new ShiftRegister(10,5);
 		shifter5.setSeed(array5);
@@ -83,13 +85,41 @@ public class TestCase {
 		
 		System.out.println('\n');
 		
-		//Test Case 6
+		//Test Case 6 - User Created
 		int[] array6 = {1};
 		ShiftRegister shifter6 = new ShiftRegister(1,0);
 		shifter6.setSeed(array6);
 		for (int i=0; i<10; i++){
 			int j = shifter6.shift();
 			System.out.print(j);
+		}
+		
+		//This code uses class TapTest to test
+		//various taps and size combinations
+		//to find how often the code repeats
+		
+		TapTest test = new TapTest(9,6);
+		System.out.print(test.do_test());
+
+		System.out.println("\n");
+
+		//Tests using a string to seed the shift register
+		
+		String test_string = "CatWalkOnTheMoonDance";
+		
+		ShiftRegister shifter7 = new ShiftRegister(0,0);
+		
+		shifter7.stringShiftRegister(test_string, 5);
+		
+		for (int i=0; i<10; i++){
+			int j = shifter7.shift();
+			System.out.print(j);
+		}
+		
+		System.out.println("\n");
+		for (int i=0; i<10; i++){
+			int j = shifter7.generate(5);
+			System.out.println(j);
 		}
 	}
 }

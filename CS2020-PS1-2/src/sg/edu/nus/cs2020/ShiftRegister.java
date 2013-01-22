@@ -5,6 +5,11 @@ package sg.edu.nus.cs2020;
  * @author Jishnu
  * Description Implements Interface ILFShiftRegister
  * A Linear Feedback Shift Register
+ * 
+ * Methods:
+ * Shift, Generate, SetSeed
+ * stringShiftRegister, StringToBin, get_state
+ * 
  */
 public class ShiftRegister implements ILFShiftRegister {
 
@@ -43,12 +48,80 @@ public class ShiftRegister implements ILFShiftRegister {
 	/* (non-Javadoc)
 	 * @see sg.edu.nus.cs2020.ILFShiftRegister#setSeed(int[])
 	 */
-	public void setSeed(int[] seed) {
+	public void setSeed(int[] seed) 
+	{
 		//Sets the register to the specified seed
 		register = seed;
 		
 		//Stores length in register_size
 		register_size = register.length;
+	}
+	
+	/**
+	 * @param string_seed - The string input that is the seed
+	 * @param tap - The location of the tap
+	 */
+	public void stringShiftRegister(String string_seed, int tap)
+	{
+		int[] bin_array = StringToBin(string_seed);
+		
+		//Sets size, tap, and seed
+		this.register_size = bin_array.length;
+		this.tap = tap;
+		this.setSeed(bin_array);
+	}
+	
+	/**
+	 * @param input - String
+	 * @return A binary integer array
+	 */
+	public int[] StringToBin (String input)
+	{
+		int size,temp,output_count = 0;
+		
+		//Uses inbuilt functionality to convert
+		//string into character array
+		char[] char_array = input.toCharArray();
+		
+		size = char_array.length;
+		
+		//Since each character is 8 bits
+		//the binary array would be 8 times
+		//the length
+		int[] output = new int[8*size];
+		
+		//Loops over each character
+		for (int i=0;i<size;i++)
+		{
+			//Uses inbuilt functionality to conver
+			//character to int
+			temp = Character.getNumericValue(char_array[i]);
+			
+			//This loop converts the integer to binary
+			//using repeated divisions by powers of 2
+			for (int j=7;j>=0;j--){
+				output[output_count] = (int) (temp/Math.pow(2, j));
+				temp %= Math.pow(2, j);
+				output_count++;
+			}
+		}
+		return output;
+	}
+	
+	/**
+	 * Returns the state of a binary array
+	 * as represented by the integer it represents
+	 * @return integer
+	 */
+	public int get_state()
+	{
+		int output = 0;
+		
+		//Calculate integer represented by binary
+		for (int i=this.register_size-1;i>=0;i--){
+			output += (this.register[i]*Math.pow(2,i));
+		}
+		return output;
 	}
 
 	/* (non-Javadoc)
