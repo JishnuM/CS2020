@@ -1,0 +1,29 @@
+a.
+An interface provides a set of requirements that any class that
+implements it must meet. The difference between an interface and
+a class is that an interface just provides a guideline consisting
+of a list of methods without any implementation details, while a
+class must contain implementation details for all its methods.
+
+An interface can be used to provide encapsulation and hide 
+implementation details and other information away, decreasing
+chances of unwanted modification. Moreover, it can be used as
+a specification system that provides a framework for building
+a class. An interface can also be useful in case new classes are
+to be build for the same function.
+
+For example, in Problem Set 2, the ILFShiftRegister is an interface
+which provides the methods that a linear feedback shift register
+must have. It is implemented by the ShiftRegister using integer arrays,
+but it is indeed conceivable that there can be other classes with
+different implementations with the same functionality. Here, the
+use of the interface as a framework is clear.
+
+b.
+The difference between a static and a member variable in a class is
+that a static variable holds the same value for every object of this
+class, while a member variable has unique values for every object in
+the class.
+
+A static variable can be used to provide constants that will be
+the same for each member of the class.
