@@ -22,7 +22,7 @@
 public class SorterTest {
 	public static void main(String[] args){
 
-		int test_size = 1000;
+		int test_size = 100000;
 		
 		//Set up sorters
 		ISort sortA = new SorterA();
@@ -31,7 +31,7 @@ public class SorterTest {
 		ISort sortD = new SorterD();
 		ISort sortE = new SorterE();
 		ISort sortF = new SorterF();
-		ISort mySort = new Jishquick();
+		//ISort mySort = new Jishquick();
 		
 		//test for sorted
 		SorterTest myTest = new SorterTest();
@@ -42,7 +42,7 @@ public class SorterTest {
 		myTest.do_tests(sortD,test_size);
 		myTest.do_tests(sortE,test_size);
 		myTest.do_tests(sortF,test_size);
-		myTest.do_tests(mySort,test_size);
+		//myTest.do_tests(mySort,test_size);
 		/*
 		boolean sort_resultA = myTest.checkSorted(sortA, test_size);
 		boolean sort_resultB = myTest.checkSorted(sortB, test_size);
@@ -117,52 +117,27 @@ public class SorterTest {
 	}
 	
 	public boolean checkSorted(ISort sorter, int size){
-		//Random array Generation
-		boolean ans2;
 		Integer[] test_array = new Integer[size];
 		Integer[] control_array = new Integer[size];
-		//Integer[] output_array = new Integer[size];
+		ISort control_sorter = new Jishquick();
 		for (int i = 0; i < size; i ++){
 			test_array[i] = (int)Math.round(Math.random()*size);
 			control_array[i] = test_array[i];
-			//System.out.print(test_array[i] + " ");
 		}
 		sorter.sort(test_array);
-		/*
-		//Simple Sorting Algorithm
-		for (int i = 0; i < size; i++){
-		
-		//System.out.print("\n");
-		//Sorted check
-		for (int j = 0; j < size; j++){
-			//System.out.print(test_array[j]+ " ");
-			if (test_array[j]!=output_array[j]){
-				ans1 = false;
+		control_sorter.sort(control_array);
+		for (int j = 0; j < size; j ++){
+			//System.out.print(test_array[j]);
+			//System.out.print(control_array[j]);
+			if (test_array[j]-control_array[j]!=0){
+				System.out.println("The offence at " + j + " Test is " + test_array[j] + " control is " + control_array[j]);
+				System.out.println(test_array[j]-control_array[j]);
+				print_int_array(test_array);
+				print_int_array(control_array);
+				return false;
 			}
 		}
-		//System.out.print(test_array[size-1]);
-		//System.out.print("\n");
-		ans1 = true;
-		*/
-		Jishnutem[] test_array2 = new Jishnutem[size];
-		for (int i = 0; i < size; i ++){
-	
-			int key = (int)Math.round(Math.random()*size);;
-			int value = i;
-			test_array2[i] = new Jishnutem(key,value);
-		}
-		
-		sorter.sort(test_array2);
-		
-		//Sorted Check
-		for (int j = 0; j < size - 1; j++){
-			if (test_array2[j].compareTo(test_array2[j+1])==1){
-				ans2 = false;
-			}
-		}
-		ans2 = true;
-		
-		return (ans2);
+		return true;
 	}
 	
 	public boolean isStable(ISort sorter, int size){
@@ -266,6 +241,13 @@ public class SorterTest {
 		ISort sortF = new SorterF();
 		
 	}*/
+	private void print_int_array(Integer[] array){
+		for (int i = 0; i < array.length; i ++){
+			System.out.print(array[i] + ",");
+		}
+		System.out.print("\n");
+		return;
+	}
 }
 
 
