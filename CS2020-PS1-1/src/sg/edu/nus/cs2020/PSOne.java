@@ -6,7 +6,7 @@ public class PSOne {
 
 	/**
 	 * 
-	 * MysteryFunction is used to calculate exponentiatio
+	 * MysteryFunction is used to calculate exponentiation
 	 * 
 	 * @param argA is the base
 	 * @param argB is the exponent
